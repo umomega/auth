@@ -54,7 +54,7 @@ class RolesController extends Controller
 
 		$role->syncPermissions(collect($validated['permissions_list'])->pluck('name'));
 
-		activity()->on($role)->log('RoleCreated');
+		activity()->on($role)->log('RoleStored');
 
 		return [
 			'message' => __('auth::roles.created'),

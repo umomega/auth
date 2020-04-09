@@ -50,7 +50,7 @@ class PermissionsController extends Controller
 	{
 		$permission = Permission::create(array_merge($request->validated(), ['guard_name' => 'web']));
 
-		activity()->on($permission)->log('PermissionCreated');
+		activity()->on($permission)->log('PermissionStored');
 
 		return [
 			'message' => __('auth::permissions.created'),

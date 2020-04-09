@@ -57,7 +57,7 @@ class UsersController extends Controller
 
 		$user->updatePermissions($validated['roles_list'], $validated['permissions_list']);
 
-		activity()->on($user)->log('UserCreated');
+		activity()->on($user)->log('UserStored');
 
 		return [
 			'message' => __('auth::users.created'),
