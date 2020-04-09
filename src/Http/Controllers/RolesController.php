@@ -54,6 +54,8 @@ class RolesController extends Controller
 
 		$role->syncPermissions(collect($validated['permissions_list'])->pluck('name'));
 
+		activity()->on($role)->log('RoleCreated');
+
 		return [
 			'message' => __('auth::roles.created'),
 			'payload' => $role
@@ -86,6 +88,8 @@ class RolesController extends Controller
 
 		$role->syncPermissions(collect($validated['permissions_list'])->pluck('name'));
 
+		activity()->on($role)->log('RoleUpdated');
+
 		return [
 			'message' => __('auth::roles.edited'),
 			'payload' => $role
@@ -115,6 +119,8 @@ class RolesController extends Controller
 	{
 		$user->removeRole($role);
 
+		activity()->on($role)->withProperties(['user' => $user->full_name])->log('RoleRevoked');
+
 		return ['message' => __('auth::roles.revoked')];
 	}
 
@@ -128,7 +134,11 @@ class RolesController extends Controller
 	{
 		$items = $this->validate($request, ['items' => 'required|array'])['items'];
 
+		$names = Role::whereIn('id', $items)->pluck('name')->toArray();
+
 		Role::whereIn('id', $items)->delete();
+
+		activity()->withProperties(compact('names'))->log('RolesDestroyedBulk');
 
 		return ['message' => __('auth::roles.deleted_multiple')];
 	}
@@ -142,7 +152,11 @@ class RolesController extends Controller
 	 */
 	public function destroy(Request $request, Role $role)
 	{
+		$name = $role->name;
+
 		$role->delete();
+
+		activity()->withProperties(compact('name'))->log('RoleDestroyed');
 
 		return ['message' => __('auth::roles.deleted')];
 	}

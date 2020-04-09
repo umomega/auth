@@ -31,6 +31,8 @@ class ProfileController extends Controller
 
 		auth()->user()->update($validated);
 
+		activity()->log('ProfileUpdated');
+
 		return ['message' => __('auth::users.updated_profile')];
 	}
 
@@ -46,6 +48,8 @@ class ProfileController extends Controller
 		$user = auth()->user();
 
 		$user->setAttribute('password', bcrypt($validated['password']))->save();
+
+		activity()->log('ProfileUpdatedPassword');
 
 		return ['message' => __('auth::users.changed_password')];
 	}

@@ -48,9 +48,13 @@ class PermissionsController extends Controller
 	 */
 	public function store(StorePermission $request)
 	{
+		$permission = Permission::create(array_merge($request->validated(), ['guard_name' => 'web']));
+
+		activity()->on($permission)->log('PermissionCreated');
+
 		return [
 			'message' => __('auth::permissions.created'),
-			'payload' => Permission::create(array_merge($request->validated(), ['guard_name' => 'web']))
+			'payload' => $permission
 		];
 	}
 
@@ -75,6 +79,8 @@ class PermissionsController extends Controller
 	public function update(UpdatePermission $request, Permission $permission)
 	{
 		$permission->update($request->validated());
+
+		activity()->on($permission)->log('PermissionUpdated');
 
 		return [
 			'message' => __('auth::permissions.edited'),
@@ -105,6 +111,8 @@ class PermissionsController extends Controller
 	{
 		$user->revokePermissionTo($permission);
 
+		activity()->on($permission)->withProperties(['user' => $user->full_name])->log('PermissionRevoked');
+
 		return ['message' => __('auth::permissions.revoked')];
 	}
 
@@ -118,8 +126,12 @@ class PermissionsController extends Controller
 	public function destroyBulk(Request $request)
 	{
 		$items = $this->validate($request, ['items' => 'required|array'])['items'];
-
+		
+		$names = Permission::whereIn('id', $items)->pluck('name')->toArray();
+		
 		Permission::whereIn('id', $items)->delete();
+
+		activity()->withProperties(compact('names'))->log('PermissionsDestroyedBulk');
 
 		return ['message' => __('auth::permissions.deleted_multiple')];
 	}
@@ -133,7 +145,11 @@ class PermissionsController extends Controller
 	 */
 	public function destroy(Request $request, Permission $permission)
 	{
+		$name = $permission->name;
+
 		$permission->delete();
+
+		activity()->withProperties(compact('name'))->log('PermissionDestroyed');
 
 		return ['message' => __('auth::permissions.deleted')];
 	}

@@ -57,6 +57,8 @@ class UsersController extends Controller
 
 		$user->updatePermissions($validated['roles_list'], $validated['permissions_list']);
 
+		activity()->on($user)->log('UserCreated');
+
 		return [
 			'message' => __('auth::users.created'),
 			'payload' => $user
@@ -95,6 +97,8 @@ class UsersController extends Controller
 
 		$user->updatePermissions($validated['roles_list'], $validated['permissions_list']);
 
+		activity()->on($user)->log('UserUpdated');
+
 		return [
 			'message' => __('auth::users.edited'),
 			'payload' => $user
@@ -114,6 +118,8 @@ class UsersController extends Controller
 
 		$user->setAttribute('password', bcrypt($validated['password']))->save();
 
+		activity()->on($user)->log('UserUpdatedPassword');
+
 		return [
 			'message' => __('auth::users.changed_password'),
 			'payload' => $user
@@ -130,7 +136,11 @@ class UsersController extends Controller
 	{
 		$items = $this->validate($request, ['items' => 'required|array'])['items'];
 
+		$names = User::whereIn('id', $items)->get()->pluck('full_name')->toArray();
+
 		User::whereIn('id', $items)->delete();
+
+		activity()->withProperties(compact('names'))->log('UsersDestroyedBulk');
 
 		return ['message' => __('auth::users.deleted_multiple')];
 	}
@@ -144,7 +154,11 @@ class UsersController extends Controller
 	 */
 	public function destroy(Request $request, User $user)
 	{
+		$name = $user->full_name;
+
 		$user->delete();
+
+		activity()->withProperties(compact('name'))->log('UserDestroyed');
 
 		return ['message' => __('auth::users.deleted')];
 	}
