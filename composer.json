@@ -1,0 +1,27 @@
+{
+	"name": "umomega/auth",
+	"description": "Authentication & Authorization Scaffold For umΩ Apps",
+	"keywords": ["umomega", "laravel", "authentication", "authorization", "laravel", "php"],
+	"version": "1.0.0",
+	"license": "MIT",
+	"authors": [
+        {
+            "name": "Egemen Kızılcan",
+            "email": "egemen@umomega.com",
+            "homepage": "http://umomega.com",
+            "role": "Developer / Designer"
+        }
+    ],
+    "require": {
+    	"php": "^7.2.5",
+    	"laravel/framework": "^7.0",
+    	"laravel/ui": "^2.0",
+    	"spatie/laravel-permission": "^3.6",
+    	"spatie/laravel-searchable": "^1.5"
+    },
+    "autoload": {
+    	"psr-4": {
+    		"Umomega\\Auth\\": "src/"
+    	}
+    }
+}
