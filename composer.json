@@ -16,6 +16,7 @@
     	"php": "^7.2.5",
     	"laravel/framework": "^7.0",
     	"laravel/ui": "^2.0",
+        "spatie/laravel-activitylog": "^3.14",
     	"spatie/laravel-permission": "^3.6",
     	"spatie/laravel-searchable": "^1.5"
     },
