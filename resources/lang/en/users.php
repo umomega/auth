@@ -23,5 +23,6 @@ return [
 	'changed_password' => 'Changed user password.',
 	'old_password_didnt_match' => 'Old password didn\'t match.',
 
-	'activity' => 'Activity'
+	'activity' => 'Activity',
+	'no_activity' => 'No recent activity were found.'
 ];

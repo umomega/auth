@@ -8,6 +8,7 @@ use Umomega\Auth\Http\Requests\StoreUser;
 use Umomega\Auth\Http\Requests\UpdateUser;
 use Umomega\Auth\Http\Requests\UpdateUserPassword;
 use Illuminate\Http\Request;
+use Spatie\Activitylog\Models\Activity;
 use Spatie\Searchable\Search;
 
 class UsersController extends Controller
@@ -161,6 +162,17 @@ class UsersController extends Controller
 		activity()->withProperties(compact('name'))->log('UserDestroyed');
 
 		return ['message' => __('auth::users.deleted')];
+	}
+
+	/**
+	 * Lists the recent activity by current logged user
+	 *
+	 * @param User $user
+	 * @return json
+	 */
+	public function chronicle(User $user)
+	{
+		return Activity::with('subject', 'causer')->where('causer_id', $user->id)->limit(30)->skip(request('s', 0))->latest()->get();
 	}
 
 }

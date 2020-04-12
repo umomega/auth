@@ -2,7 +2,7 @@
 	"name": "umomega/auth",
 	"description": "Authentication & Authorization Scaffold For umΩ Apps",
 	"keywords": ["umomega", "laravel", "authentication", "authorization", "laravel", "php"],
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"license": "MIT",
 	"authors": [
         {

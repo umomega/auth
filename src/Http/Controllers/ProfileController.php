@@ -5,6 +5,7 @@ namespace Umomega\Auth\Http\Controllers;
 use Umomega\Foundation\Http\Controllers\Controller;
 use Umomega\Auth\Http\Requests\UpdateProfile;
 use Umomega\Auth\Http\Requests\UpdateProfilePassword;
+use Spatie\Activitylog\Models\Activity;
 
 class ProfileController extends Controller
 {
@@ -62,6 +63,16 @@ class ProfileController extends Controller
 	public function info()
 	{
 		return auth()->user()->only(['first_name', 'last_name', 'email', 'full_name', 'initials', 'gravatar', 'all_permissions']);
+	}
+
+	/**
+	 * Lists the recent activity by current logged user
+	 *
+	 * @return json
+	 */
+	public function chronicle()
+	{
+		return Activity::with('subject', 'causer')->where('causer_id', auth()->user()->id)->limit(30)->skip(request('s', 0))->latest()->get();
 	}
 
 }
