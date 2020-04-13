@@ -106,7 +106,7 @@ class User extends Authenticatable implements Searchable
      */
     public function getAllPermissionsAttribute()
     {
-        return $this->getPermissionNames();
+        return $this->getAllPermissions()->pluck('name');
     }
 
     /**
