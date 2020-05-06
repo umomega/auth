@@ -149,11 +149,10 @@ class UsersController extends Controller
 	/**
 	 * Deletes a user
 	 *
-	 * @param Request $request
 	 * @param User $user
 	 * @return json
 	 */
-	public function destroy(Request $request, User $user)
+	public function destroy(User $user)
 	{
 		$name = $user->full_name;
 

@@ -139,11 +139,10 @@ class PermissionsController extends Controller
 	/**
 	 * Deletes a permissions
 	 *
-	 * @param Request $request
 	 * @param Permission $permission
 	 * @return json
 	 */
-	public function destroy(Request $request, Permission $permission)
+	public function destroy(Permission $permission)
 	{
 		$name = $permission->name;
 

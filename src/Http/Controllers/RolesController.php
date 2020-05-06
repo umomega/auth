@@ -146,11 +146,10 @@ class RolesController extends Controller
 	/**
 	 * Deletes a role
 	 *
-	 * @param Request $request
 	 * @param Role $role
 	 * @return json
 	 */
-	public function destroy(Request $request, Role $role)
+	public function destroy(Role $role)
 	{
 		$name = $role->name;
 
