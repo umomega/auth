@@ -1,14 +1,14 @@
 {
 	"name": "umomega/auth",
 	"description": "Authentication & Authorization Scaffold For umΩ Apps",
-	"keywords": ["umomega", "laravel", "authentication", "authorization", "laravel", "php"],
-	"version": "1.1.2",
+	"keywords": ["umomega", "laravel", "authentication", "authorization", "php"],
+	"version": "1.1.3",
 	"license": "MIT",
 	"authors": [
         {
             "name": "Egemen Kızılcan",
             "email": "egemen@umomega.com",
-            "homepage": "http://umomega.com",
+            "homepage": "https://umomega.com",
             "role": "Developer / Designer"
         }
     ],
