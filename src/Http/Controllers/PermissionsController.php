@@ -137,7 +137,7 @@ class PermissionsController extends Controller
 	}
 
 	/**
-	 * Deletes a permissions
+	 * Deletes a permission
 	 *
 	 * @param Permission $permission
 	 * @return json
