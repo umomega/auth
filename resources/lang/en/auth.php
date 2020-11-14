@@ -23,4 +23,7 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'hint_password' => 'Choose a strong password including uppercase and lowercase letters, numbers and punctuation.',
+    'hint_email' => 'Enter a valid e-mail address.'
+
 ];
