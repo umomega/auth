@@ -92,7 +92,8 @@ class RolesController extends Controller
 
 		return [
 			'message' => __('auth::roles.edited'),
-			'payload' => $role
+			'payload' => $role,
+			'event' => 'user-updated'
 		];
 	}
 
@@ -121,7 +122,11 @@ class RolesController extends Controller
 
 		activity()->on($role)->withProperties(['user' => $user->full_name])->log('RoleRevoked');
 
-		return ['message' => __('auth::roles.revoked')];
+		$response = ['message' => __('auth::roles.revoked')];
+
+		if($user->id == auth()->user()->id) $response['event'] = 'user-updated';
+
+		return $response;
 	}
 
 	/**

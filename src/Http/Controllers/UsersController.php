@@ -100,10 +100,16 @@ class UsersController extends Controller
 
 		activity()->on($user)->log('UserUpdated');
 
-		return [
+		$response = [
 			'message' => __('auth::users.edited'),
 			'payload' => $user
 		];
+
+		if($user->id == auth()->user()->id) {
+			$response['event'] = 'user-updated';
+		}
+
+		return $response;
 	}
 
 	/**

@@ -113,7 +113,11 @@ class PermissionsController extends Controller
 
 		activity()->on($permission)->withProperties(['user' => $user->full_name])->log('PermissionRevoked');
 
-		return ['message' => __('auth::permissions.revoked')];
+		$response = ['message' => __('auth::permissions.revoked')];
+
+		if($user->id == auth()->user()->id) $response['event'] = 'user-updated';
+
+		return $response;
 	}
 
 
@@ -151,6 +155,16 @@ class PermissionsController extends Controller
 		activity()->withProperties(compact('name'))->log('PermissionDestroyed');
 
 		return ['message' => __('auth::permissions.deleted')];
+	}
+
+	/**
+	 * Returns permissions for the logged in user
+	 *
+	 * @return @array
+	 */
+	public function user()
+	{
+		return auth()->user()->all_permissions;
 	}
 
 }
