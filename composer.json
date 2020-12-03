@@ -24,5 +24,12 @@
     	"psr-4": {
     		"Umomega\\Auth\\": "src/"
     	}
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Umomega\\Auth\\Providers\\AuthServiceProvider"
+            ]
+        }
     }
 }
