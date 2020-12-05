@@ -20,7 +20,7 @@ class User extends Authenticatable implements Searchable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'homepage_node'
+        'first_name', 'last_name', 'email', 'locale'
     ];
 
     /**

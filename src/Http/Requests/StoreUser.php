@@ -19,7 +19,8 @@ class StoreUser extends FormRequest
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|min:8',
             'roles_list' => 'nullable|array',
-            'permissions_list' => 'nullable|array'
+            'permissions_list' => 'nullable|array',
+            'locale' => 'required'
         ];
     }
 }

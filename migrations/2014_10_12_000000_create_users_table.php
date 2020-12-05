@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('api_token', 80)->unique()->nullable()->default(null);
+            $table->string('locale', 16)->default(env('REACTOR_LOCALE', 'en'));
 
             $table->softDeletes();
             $table->rememberToken();

@@ -19,7 +19,8 @@ class UpdateUser extends FormRequest
             'last_name' => 'required|max:255',
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($this->route('user'))],
             'roles_list' => 'nullable|array',
-            'permissions_list' => 'nullable|array'
+            'permissions_list' => 'nullable|array',
+            'locale' => 'required'
         ];
     }
 }
