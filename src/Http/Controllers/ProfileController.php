@@ -17,7 +17,7 @@ class ProfileController extends Controller
 	 */
 	public function get()
 	{
-		return auth()->user()->only(['first_name', 'last_name', 'email']);
+		return auth()->user()->only(['first_name', 'last_name', 'email', 'locale']);
 	}
 
 	/**
