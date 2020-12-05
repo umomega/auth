@@ -15,7 +15,7 @@ return [
 	'deleted_multiple' => 'Deleted roles.',
 
 	'revoke' => 'Revoke Role',
-	'revoked' => 'Revoke roles',
+	'revoked' => 'Revoked role.',
 
 	'search' => 'Search roles',
 ];
