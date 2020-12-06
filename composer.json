@@ -2,7 +2,7 @@
 	"name": "umomega/auth",
 	"description": "Authentication & Authorization Scaffold For umΩ Apps",
 	"keywords": ["umomega", "laravel", "authentication", "authorization", "php"],
-	"version": "1.1.5",
+	"version": "1.1.6",
 	"license": "MIT",
 	"authors": [
         {
@@ -17,8 +17,10 @@
     	"laravel/framework": "^8.0",
     	"laravel/ui": "^3.0",
         "spatie/laravel-activitylog": "^3.14",
+        "spatie/laravel-activitylog": "^3.14",
     	"spatie/laravel-permission": "^3.6",
-    	"spatie/laravel-searchable": "^1.5"
+    	"spatie/laravel-searchable": "^1.5",
+        "umomega/foundation": "^1.0"
     },
     "autoload": {
     	"psr-4": {
