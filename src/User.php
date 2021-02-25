@@ -86,7 +86,7 @@ class User extends Authenticatable implements Searchable
      */
     public function getInitialsAttribute()
     {
-        return substr($this->first_name, 0, 1) . substr($this->last_name, 0, 1);
+        return mb_strtoupper(mb_substr($this->first_name, 0, 1) . mb_substr($this->last_name, 0, 1));
     }
 
     /**
