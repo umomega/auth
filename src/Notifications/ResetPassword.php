@@ -24,7 +24,7 @@ class ResetPassword extends Notification
         return (new MailMessage)
             ->subject(Lang::get('auth::passwords.mail_subject'))
             ->line(Lang::get('auth::passwords.mail_reason'))
-            ->action(Lang::get('auth::passwords.reset_password'), url(config('app.url').route('reactor.password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
+            ->action(Lang::get('auth::passwords.reset_password'), url(config('app.url').route((is_request_reactor() ? 'reactor' : 'auth') . '.password.reset', ['token' => $this->token, 'email' => $notifiable->getEmailForPasswordReset()], false)))
             ->line(Lang::get('auth::passwords.mail_duration', ['count' => config('auth.passwords.'.config('auth.defaults.passwords').'.expire')]))
             ->line(Lang::get('auth::passwords.mail_no_action'));
     }

@@ -8,7 +8,7 @@
         "authorization",
         "php"
     ],
-    "version": "1.1.7",
+    "version": "1.1.8",
     "license": "MIT",
     "authors": [
         {
@@ -22,7 +22,6 @@
         "php": "^7.3|^8.0",
         "laravel/framework": "^8.0",
         "laravel/ui": "^3.0",
-        "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-activitylog": "^3.14",
         "spatie/laravel-permission": "^3.6",
         "spatie/laravel-searchable": "^1.5",

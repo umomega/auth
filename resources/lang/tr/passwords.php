@@ -21,7 +21,7 @@ return [
 
     'mail_subject' => 'Şifre Sıfırlama Bildirimi',
     'mail_reason' => 'Bu e-postayı, hesabınız için bir şifre sıfırlama isteği aldığımız için alıyorsunuz.',
-    'mail_duration' => 'Bu şifre sıfırlama bağlantısının süresi: count dakika içinde sona erecek.',
+    'mail_duration' => 'Bu şifre sıfırlama bağlantısının süresi :count dakika içinde sona erecek.',
     'mail_no_action' => 'Parola sıfırlama talebinde bulunmadıysanız, başka bir işlem yapmanız gerekmemektedir.',
 
     'reset' => 'Parolanız sıfırlandı!',
