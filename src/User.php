@@ -154,5 +154,15 @@ class User extends Authenticatable implements Searchable
         $this->api_token = \Illuminate\Support\Str::random(60);
         if($save) $this->save();
     }
+
+    /**
+     * Override guard name
+     * 
+     * @return string
+     */
+    public function guardName()
+    {
+        return 'web';
+    }
     
 }
